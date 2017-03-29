@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Wrap Text Rectangle</title>
+</head>
+
+<body onload=wrapTextRect()>
+Place this text:<br>
+<textarea  id="myTextValue" style='width:400px;height:60px;'>
+Hello!
+</textarea><br>
+<button onClick=wrapTextRect()> Wrap text in rect</button>
+
+<div id="svgDiv" style='background-color:lightgreen;width:400px;height:400px;'>
+<svg id="mySVG" width="400" height="400">
+ <rect id=myRect x=50 y=50 rx=10 ry=10 width=100  fill="#4682b4" stroke='black' stroke-width=5 opacity=.5 />
+<text id=myText font-size=14 font-family="arial" fill="white" />
+</svg>
+</div>
+SVG Source:<br>
+<textarea id=sourceValue style=width:500px;height:300px></textarea>
+<script>
+ var NS="http://www.w3.org/2000/svg"
+ //---onload and button---
+function wrapTextRect()
+{
+//---clear previous---
+for(var k=myText.childNodes.length-1;k>=0;k--)
+    myText.removeChild(myText.childNodes.item(k))
+
+var padding=10
+var width=+myRect.getAttribute("width")-padding
+var x=+myRect.getAttribute("x")
+var y=+myRect.getAttribute("y")
+var fontSize=+myText.getAttribute("font-size")
+var text=myTextValue.value
+
+var words = text.split(' ');
+var text_element = document.getElementById('myText');
+var tspan_element = document.createElementNS(NS, "tspan");   // Create first tspan element
+var text_node = document.createTextNode(words[0]);           // Create text in tspan element
+tspan_element.setAttribute("x", x+padding);
+tspan_element.setAttribute("y", y+padding+fontSize);
+tspan_element.appendChild(text_node);                           // Add tspan element to DOM
+text_element.appendChild(tspan_element);                          // Add text to tspan element
+//---[EDIT] a single word that exceeds preset rect with---
+if(words.length==1)
+{
+   var len = tspan_element.getComputedTextLength()
+   if(len>+myRect.getAttribute("width"))
+        myRect.setAttribute("width", len+2*padding)
+}
+   //---end [EDIT]------------------
+for(var i=1; i<words.length; i++)
+{
+    var len = tspan_element.firstChild.data.length            // Find number of letters in string
+    tspan_element.firstChild.data += " " + words[i];            // Add next word
+
+    if (tspan_element.getComputedTextLength() > width-padding)
+    {
+        tspan_element.firstChild.data = tspan_element.firstChild.data.slice(0, len);    // Remove added word
+
+        var tspan_element = document.createElementNS(NS, "tspan");       // Create new tspan element
+        tspan_element.setAttribute("x",  x+padding);
+        tspan_element.setAttribute("dy", fontSize);
+        text_node = document.createTextNode(words[i]);
+        tspan_element.appendChild(text_node);
+        text_element.appendChild(tspan_element);
+    }
+}
+
+var height = text_element.getBBox().height +2*padding; //-- get height plus padding
+myRect.setAttribute('height', height); //-- change rect height
+//---show svg source---
+sourceValue.value=svgDiv.innerHTML
+}
+</script>
+</body>
+
+</html>
+ Ru
