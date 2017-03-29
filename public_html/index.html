@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+Author : Sahana Parvin
+Email  : sahana.cse112@gmail.com
+-->
+<html>
+    <head>
+        <title>Tree Graph</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+        <link href="css/bootstrap-theme.min.css" type="text/css" rel="stylesheet">
+        <link href="css/style.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript" src="js/my_js.js"></script>
+
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="col-sm-offset-2 col-sm-10 ">
+                <div class="col-sm-3 col-xs-8">
+                    <input class="form-control form-inline" type="text" name="txt" id="tx" placeholder="Enter values"/>
+                </div>
+                <div class="col-sm-2 col-xs-2">
+                    <button class="btn btn-success" name="btn" onclick="myFunction();">Enter</button>
+                </div>
+            </div>
+            <div class="container">
+
+                <div class="col-sm-offset-2 col-sm-10 master">
+
+                    <div class="boxes">
+                        <div class="lvl1">
+                            <div class="box1 text-center" id="b1">0</div>
+                            <div class="box2 text-center" id="b2">0</div>
+                        </div>
+
+                        <div class="lvl2">
+                            <div class="box3 text-center" id="b3">0</div>
+                            <div class="box4 text-center" id="rt">0</div>
+                        </div>
+                        <div class="lvl3">
+                            <div class="box5 text-center" id="b5">0</div>
+                            <div class="box6 text-center" id="b6">0</div>
+                        </div> 
+                    </div>
+                    <div class="lines" id="ln">
+                        <div class="line1" id="l1"></div>
+                        <div class="line2" id="l2"></div>
+                        <div class="line3" id="l3"></div>
+                        <div class="line4" id="l4"></div>
+                        <div class="line5" id="l5"></div>
+                        <div class="line_s1" id="l_s1"></div>
+                        <div class="line_s2" id="l_s2"></div>
+                        <div class="line_s3" id="l_s3"></div>
+                        <div class="line_s4" id="l_s4"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <footer class="text-center">Developed by <a href="https://www.linkedin.com/in/sahana-parvin/">Sahana Parvin</a></footer>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery-2.2.0.min.js"></script>
+
+    </body>
+</html>
